@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateStudenteInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createStudente(createStudenteInput: CreateStudenteInput!): Studente!
+  removeStudente(id: Int!): Studente!
+  updateStudente(updateStudenteInput: UpdateStudenteInput!): Studente!
+}
+
+type Query {
+  studente(id: Int!): Studente!
+  studentes: [Studente!]!
+}
+
+type Studente {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateStudenteInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
