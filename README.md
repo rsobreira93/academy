@@ -4,7 +4,11 @@ A project for pagination's tests with typeorm, only study.
 
 ## Technologies
 
-[Nest](https://github.com/nestjs/nest)
+[Nest](https://github.com/nestjs/nest);
+[Nest Query](https://doug-martin.github.io/nestjs-query/);
+[QraphQL](https://graphql.org/);
+[TypeORM](https://typeorm.io/);
+[Docker](https://www.docker.com/)
 
 ## Installation
 
