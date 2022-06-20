@@ -4,5 +4,5 @@ import { InputType } from '@nestjs/graphql';
 export class CreateStudentInput {
   name: string;
 
-  key: string;
+  key?: string;
 }
