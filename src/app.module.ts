@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { StudentsModule } from './modules/studentes/studentes.module';
+import { StudentsModule } from './modules/studentes/students.module';
 
 @Module({
   imports: [
