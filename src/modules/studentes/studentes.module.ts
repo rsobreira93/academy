@@ -1,8 +1,20 @@
+import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
+import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { Module } from '@nestjs/common';
-import { StudentesService } from './studentes.service';
-import { StudentesResolver } from './studentes.resolver';
+import { Student } from './entities/studente.entity';
 
 @Module({
-  providers: [StudentesResolver, StudentesService]
+  imports: [
+    NestjsQueryGraphQLModule.forFeature({
+      imports: [NestjsQueryTypeOrmModule.forFeature([Student])],
+      resolvers: [
+        {
+          DTOClass: Student,
+          EntityClass: Student,
+        },
+      ],
+    }),
+  ],
+  providers: [],
 })
-export class StudentesModule {}
+export class StudentsModule {}

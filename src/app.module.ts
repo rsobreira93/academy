@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { StudentesModule } from './modules/studentes/studentes.module';
+import { StudentsModule } from './modules/studentes/studentes.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { StudentesModule } from './modules/studentes/studentes.module';
       password: 'test',
       database: 'postgres',
     }),
-    StudentesModule,
+    StudentsModule,
   ],
   providers: [AppService],
 })
