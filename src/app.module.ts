@@ -8,7 +8,7 @@ import { StudentsModule } from './modules/studentes/students.module';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
@@ -20,6 +20,8 @@ import { StudentsModule } from './modules/studentes/students.module';
       username: 'test',
       password: 'test',
       database: 'postgres',
+      entities: ['**/modules/**/entities/*.js'],
+      synchronize: true,
     }),
     StudentsModule,
   ],
