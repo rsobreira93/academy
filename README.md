@@ -1,7 +1,3 @@
-## Description
-
-A project for pagination's tests with typeorm, only study.
-
 ## Technologies
 
 [Nest](https://github.com/nestjs/nest);
@@ -10,36 +6,55 @@ A project for pagination's tests with typeorm, only study.
 [TypeORM](https://typeorm.io/);
 [Docker](https://www.docker.com/)
 
-## Installation
+## Executando o projeto
+
+### Ajustando o .env
+
+Renomeie `.env.example` para `.env` e configure como desejar.
+
+### Executando a postgres
 
 ```bash
-$ npm install
+$ docker-compose up -d
 ```
 
-## Running the app
+### Installation dependencies
+
+```bash
+$ yarn install
+
+ou
+
+yarn
+```
+
+### Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
-## Test
+### Test
 
 ```bash
-# unit tests
-$ npm run test
+# unit tests all tests
+$ yarn test
+
+# only a test
+$ yarn test -o
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
 ```
 
 ## License
