@@ -2,9 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-"""Cursor for paging through collections"""
-scalar ConnectionCursor
-
 input CreateManyStudentsInput {
   """Array of records to create"""
   students: [CreateStudentInput!]!
@@ -20,19 +17,30 @@ input CreateStudentInput {
   name: String!
 }
 
-input CursorPaging {
-  """Paginate after opaque cursor"""
-  after: ConnectionCursor
-
-  """Paginate before opaque cursor"""
-  before: ConnectionCursor
-
-  """Paginate first"""
-  first: Int
-
-  """Paginate last"""
-  last: Int
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
 }
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type DeleteManyResponse {
   """The number of records deleted."""
@@ -58,18 +66,20 @@ type Mutation {
   updateOneStudent(input: UpdateOneStudentInput!): Student!
 }
 
-type PageInfo {
-  """The cursor of the last returned record."""
-  endCursor: ConnectionCursor
-
+type OffsetPageInfo {
   """true if paging forward and there are more records."""
   hasNextPage: Boolean
 
   """true if paging backwards and there are more records."""
   hasPreviousPage: Boolean
+}
 
-  """The cursor of the first returned record."""
-  startCursor: ConnectionCursor
+input OffsetPaging {
+  """Limit the number of records returned"""
+  limit: Int
+
+  """Offset to start returning records from"""
+  offset: Int
 }
 
 type Query {
@@ -82,7 +92,7 @@ type Query {
     filter: StudentFilter = {}
 
     """Limit or page results."""
-    paging: CursorPaging = {first: 10}
+    paging: OffsetPaging = {limit: 10}
 
     """Specify to sort results."""
     sorting: [StudentSort!] = []
@@ -119,68 +129,84 @@ input StringFieldComparison {
 }
 
 type Student {
+  created_at: DateTime!
+  deleted_at: DateTime!
   id: String!
   key: String!
   name: String!
+  updated_at: DateTime!
 }
 
 type StudentAggregateGroupBy {
+  created_at: DateTime
+  deleted_at: DateTime
   key: String
   name: String
+  updated_at: DateTime
 }
 
 type StudentConnection {
-  """Array of edges."""
-  edges: [StudentEdge!]!
+  """Array of nodes."""
+  nodes: [Student!]!
 
   """Paging information"""
-  pageInfo: PageInfo!
+  pageInfo: OffsetPageInfo!
 
   """Fetch total count of records"""
   totalCount: Int!
 }
 
 type StudentCountAggregate {
+  created_at: Int
+  deleted_at: Int
   key: Int
   name: Int
+  updated_at: Int
 }
 
 input StudentDeleteFilter {
   and: [StudentDeleteFilter!]
+  created_at: DateFieldComparison
+  deleted_at: DateFieldComparison
   key: StringFieldComparison
   name: StringFieldComparison
   or: [StudentDeleteFilter!]
+  updated_at: DateFieldComparison
 }
 
 type StudentDeleteResponse {
+  created_at: DateTime
+  deleted_at: DateTime
   id: String
   key: String
   name: String
-}
-
-type StudentEdge {
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-
-  """The node containing the Student"""
-  node: Student!
+  updated_at: DateTime
 }
 
 input StudentFilter {
   and: [StudentFilter!]
+  created_at: DateFieldComparison
+  deleted_at: DateFieldComparison
   key: StringFieldComparison
   name: StringFieldComparison
   or: [StudentFilter!]
+  updated_at: DateFieldComparison
 }
 
 type StudentMaxAggregate {
+  created_at: DateTime
+  deleted_at: DateTime
   key: String
   name: String
+  updated_at: DateTime
 }
 
 type StudentMinAggregate {
+  created_at: DateTime
+  deleted_at: DateTime
   key: String
   name: String
+  updated_at: DateTime
 }
 
 input StudentSort {
@@ -190,15 +216,21 @@ input StudentSort {
 }
 
 enum StudentSortFields {
+  created_at
+  deleted_at
   key
   name
+  updated_at
 }
 
 input StudentUpdateFilter {
   and: [StudentUpdateFilter!]
+  created_at: DateFieldComparison
+  deleted_at: DateFieldComparison
   key: StringFieldComparison
   name: StringFieldComparison
   or: [StudentUpdateFilter!]
+  updated_at: DateFieldComparison
 }
 
 type UpdateManyResponse {
